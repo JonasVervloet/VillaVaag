@@ -1,0 +1,70 @@
+.loginBoxContainer {
+    height: 80%;
+    width: 25%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25);
+}
+
+.switchButtonsContainer {
+    height: 20%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.switchButton {
+    width: 50%;
+    height: 100%;
+
+    justify-content: center;
+    text-align: center;
+
+    border-width: 1px;
+    border-style: solid;
+    padding: 0px;
+
+    font-weight: bold;
+    font-size: 1.1vw;
+}
+
+.switchButton:focus {
+    outline: none;
+}
+
+.formContainer {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.submitButtonContainer {
+    height: 25%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.submitButton {
+    font-weight: bold;
+    font-size: 1.2vw;
+
+    padding: 10px 20px;
+    margin-bottom: 10px;
+
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+
+    transition-duration: 0.4s;
+}
+
+.submitButton:focus {
+    outline: none;
+}
