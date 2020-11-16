@@ -5,8 +5,10 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>Villa Vaag WBW</title>
         <link rel="icon" href="/favicon.ico" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Montserrat&display=swap" rel="stylesheet" />
       </Head>
 
       <main className={styles.main}>

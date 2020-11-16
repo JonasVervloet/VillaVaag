@@ -5,8 +5,8 @@ export default function WbwHome() {
         <div>
             <h1>Villa Vaag</h1>
             <h2>Wie Betaald Wat?!</h2>
-            <Link href="/">
-                <a>click here to login-in</a>
+            <Link href="/wbw/login">
+                click here to login-in
             </Link>
         </div>
     )
