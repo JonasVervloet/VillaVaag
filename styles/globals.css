@@ -1,4 +1,14 @@
+* {
+  box-sizing: border-box;
+}
+
 html,
+body,
+#__next {
+  width: 100%;
+  height: 100%;
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -11,6 +21,60 @@ a {
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
+input, button {
+  outline: none;
+  background: none;
+  border: none;
+}
+
+.dark-background {
+  background-color: #E85A50;
+}
+
+.dark-background-hover {
+  background-color: #E85A50;
+}
+
+.dark-background-hover:hover {
+  background-color: #E88073;
+}
+
+.dark-background-secondary {
+  background-color: #E88073;
+}
+
+.light-background {
+  background-color: #EAE8DC;
+}
+
+.light-background-secondary {
+  background-color: #D8C3A4;
+}
+
+.white-background {
+  background-color: #FFFFFF;
+}
+
+.light-text-color {
+  color: #FFFFFF
+}
+
+.dark-text-color {
+  color: #E85A50
+}
+
+.light-border-color {
+  border-color: #D8C3A4;
+}
+
+.dark-border-color {
+  border-color: #E85A50;
+}
+
+.primary-font-family {
+  font-family: 'Lalezar', Arial, sans-serif;
+}
+
+.secondary-font-family {
+  font-family: 'Montserrat', sans-serif;
 }
