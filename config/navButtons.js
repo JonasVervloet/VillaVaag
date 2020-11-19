@@ -1,15 +1,15 @@
 const navButtons = [
     {
         label: 'My Groups',
-        path: "login"
+        path: "groups"
     },
     {
         label: 'Shopping List',
-        path: 'login'
+        path: 'shopping'
     },
     {
         label: 'Profile',
-        path: 'login'
+        path: 'profile'
     }
 ]
 

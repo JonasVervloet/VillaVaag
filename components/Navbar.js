@@ -12,7 +12,7 @@ function Navbar(props) {
             + " dark-background"
         }>
             <div className={styles.logo}>
-                <Link href='home'>
+                <Link href='/wbw'>
                     <h3 className={styles.logoText}>Villa Vaag WBW</h3>
                 </Link>
             </div>
