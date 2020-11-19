@@ -1,11 +1,15 @@
 import React, {useState} from 'react'
+import { useDispatch } from 'react-redux'
+
 import LoginForm from './LoginForm'
 import RegisterForm from './RegisterForm'
 import styles from './LoginBox.module.css'
+import {switchLogin} from '../actions'
 
 function LoginBox() {
 
     const [loginForm, setLoginForm] = useState(true);
+    const dispatch = useDispatch();
 
     let form;
     let loginButtonBackground;
@@ -19,6 +23,11 @@ function LoginBox() {
         form = <RegisterForm />
         loginButtonBackground = " dark-background-secondary";
         registerButtonBackground = " dark-background";
+    }
+
+    const handleSubmit = () => {
+        console.log("SUBMITTING!");
+        dispatch(switchLogin());
     }
 
     return (
@@ -64,7 +73,9 @@ function LoginBox() {
                     styles.submitButton
                     + " light-text-color"
                     + " dark-background-hover"
-                    }>
+                    }
+                    onClick={handleSubmit}
+                >
                     SUBMIT
                 </button>
             </div>
