@@ -78,3 +78,7 @@ input, button {
 .secondary-font-family {
   font-family: 'Montserrat', sans-serif;
 }
+
+.dark-text-hover:hover {
+  color: #E88073
+}
