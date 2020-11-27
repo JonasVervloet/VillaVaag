@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "axios": "^0.21.0",
     "bcrypt": "^5.0.0",
     "bootstrap": "^4.5.3",
     "joi": "^17.2.1",
@@ -18,6 +19,7 @@
     "popper.js": "^1.16.1-lts",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-hook-form": "^6.11.4",
     "react-redux": "^7.2.2",
     "redux": "^4.0.5"
   }
