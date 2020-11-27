@@ -8,19 +8,25 @@
 }
 
 .inputLabel {
-
+    height: 40%;
     text-transform: uppercase;
 
-    font-size: 20px;
+    font-size: 2.3vh;
     font-weight: bold;
 }
 
 .inputSpace {
+    height: 40%;
     display: block;
 
     border-style: solid;
     border-width: 0px 0px 2px 0px;
 
     text-align: center;
-    font-size: 100%;
+    font-size: 1.8vh;
+}
+
+.errorField {
+    height: 20%;
+    font-size: 1.3vh;
 }
