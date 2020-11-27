@@ -10,7 +10,7 @@
 }
 
 .switchButtonsContainer {
-    height: 20%;
+    height: 15%;
 
     display: flex;
     flex-direction: row;
@@ -38,7 +38,7 @@
 
 .formContainer {
     width: 100%;
-    height: 100%;
+    height: 70%;
 
     display: flex;
     flex-direction: column;
@@ -46,7 +46,7 @@
 }
 
 .submitButtonContainer {
-    height: 25%;
+    height: 15%;
     
     display: flex;
     justify-content: center;

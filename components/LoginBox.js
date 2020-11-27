@@ -5,29 +5,66 @@ import LoginForm from './LoginForm'
 import RegisterForm from './RegisterForm'
 import styles from './LoginBox.module.css'
 import {switchLogin} from '../actions'
+import {registerUser, loginUser} from '../utils/userAPI'
+import useFormList from '../utils/useFormList'
 
 function LoginBox() {
 
     const [loginForm, setLoginForm] = useState(true);
+    const [loginRegister, handleLoginSubmit, loginErrors] = useFormList();
+    const [registerRegister, handleRegisterSubmit, registerErrors] = useFormList();
     const dispatch = useDispatch();
 
-    let form;
     let loginButtonBackground;
     let registerButtonBackground;
+
+    const loginFormComponent = 
+        <LoginForm 
+            register={loginRegister}
+            errors={loginErrors} 
+        />
+    const registerFormComponent =
+        <RegisterForm
+            register={registerRegister}
+            errors={registerErrors}
+        />
     
     if (loginForm) {
-        form = <LoginForm />
         loginButtonBackground = " dark-background";
         registerButtonBackground = " dark-background-secondary";
     } else {
-        form = <RegisterForm />
         loginButtonBackground = " dark-background-secondary";
         registerButtonBackground = " dark-background";
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = async (data) => {
         console.log("SUBMITTING!");
-        dispatch(switchLogin());
+        console.log(data);
+        if (loginForm) {
+            const response = await loginUser({
+                email: data['Email'],
+                password: data['Password']
+            });
+            if (response.success) {
+                dispatch(switchLogin());
+            } else {
+                console.log('LOGIN: FAIL');
+                console.log(response.data);
+            }
+        } else {
+            const response = await registerUser({
+                name: data['First Name'],
+                lastName: data['Last Name'],
+                email: data['Email'],
+                password: data['Password']
+            });
+            if (response.success) {
+                dispatch(switchLogin());
+            } else {
+                console.log('REGISTER: FAIL');
+                console.log(response.data);
+            }
+        }
     }
 
     return (
@@ -66,7 +103,7 @@ function LoginBox() {
                 </button>
             </div>
             <div className={styles.formContainer}>
-                {form}
+                {loginForm ? loginFormComponent : registerFormComponent}
             </div>
             <div className={styles.submitButtonContainer}>
                 <button className={
@@ -74,7 +111,9 @@ function LoginBox() {
                     + " light-text-color"
                     + " dark-background-hover"
                     }
-                    onClick={handleSubmit}
+                    onClick={
+                        loginForm ? handleLoginSubmit(handleSubmit): handleRegisterSubmit(handleSubmit)
+                    }
                 >
                     SUBMIT
                 </button>
