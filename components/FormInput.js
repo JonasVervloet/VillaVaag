@@ -2,16 +2,14 @@ import { error, get } from 'jquery';
 import React from 'react'
 import styles from './FormInput.module.css'
 
-function FormInput({title, type, register, errors, errorMessages}) {
+function FormInput({title, type, register, errors}) {
 
-    const getErrorMessage = (errors, errorMessages) => {
-        for (const item of errorMessages) {
-            if (errors[title] && errors[title].type == item.type) {
-                console.log(item.message);
-                return item.message;
-            }
+    const getErrorMessage = errors => {
+        if (errors[title]) {
+            return errors[title].message;
+        } else {
+            return null;
         }
-        return null;
     }
 
     return (
@@ -39,7 +37,7 @@ function FormInput({title, type, register, errors, errorMessages}) {
                         + " dark-text-color"
                     }
                 >
-                    {getErrorMessage(errors, errorMessages)}
+                    {getErrorMessage(errors)}
                 </p>
             </label>
     );
