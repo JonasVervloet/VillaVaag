@@ -3,13 +3,18 @@ import api from './api'
 const registerUser = async (registerInfo) => {
     try {
         const registerRes = await api.post(
-            '/users/register',
+            'users/register',
             registerInfo
         );
-        return registerRes;
+        return {
+            success: true,
+            data: registerRes
+        };
     } catch (e) {
-        console.log(e);
-        return e;
+        return {
+            success: false,
+            data: e
+        };
     }
 }
 
@@ -19,11 +24,15 @@ const loginUser = async (loginInfo) => {
             'users/login',
             loginInfo
         );
-        console.log(loginRes);
-        return loginRes;
+        return {
+            success: true,
+            data: loginRes
+        }
     } catch (e) {
-        console.log(e);
-        return e;
+        return {
+            success: false,
+            data: e
+        };
     }
 }
 
