@@ -11,6 +11,8 @@ import useFormList from '../utils/useFormList'
 function LoginBox() {
 
     const [loginForm, setLoginForm] = useState(true);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
     const [loginRegister, handleLoginSubmit, loginErrors] = useFormList();
     const [registerRegister, handleRegisterSubmit, registerErrors] = useFormList();
     const dispatch = useDispatch();
@@ -37,19 +39,28 @@ function LoginBox() {
         registerButtonBackground = " dark-background";
     }
 
+    const switchLoginRegister = (toLogin) =>{
+        setLoginForm(toLogin);
+        setError(false);
+    }
+
     const handleSubmit = async (data) => {
         console.log("SUBMITTING!");
         console.log(data);
+        setError(false);
+        setLoading(true);
         if (loginForm) {
             const response = await loginUser({
                 email: data['Email'],
                 password: data['Password']
             });
+            setLoading(false);
             if (response.success) {
                 dispatch(switchLogin());
             } else {
                 console.log('LOGIN: FAIL');
                 console.log(response.data);
+                setError(true);
             }
         } else {
             const response = await registerUser({
@@ -58,11 +69,13 @@ function LoginBox() {
                 email: data['Email'],
                 password: data['Password']
             });
+            setLoading(false);
             if (response.success) {
                 dispatch(switchLogin());
             } else {
                 console.log('REGISTER: FAIL');
                 console.log(response.data);
+                setError(true);
             }
         }
     }
@@ -85,7 +98,7 @@ function LoginBox() {
                         + loginButtonBackground
                         + " light-border-color" 
                     }
-                    onClick={() => setLoginForm(true)}
+                    onClick={() => switchLoginRegister(true)}
                 >
                     LOGIN
                 </button>
@@ -97,7 +110,7 @@ function LoginBox() {
                         + registerButtonBackground
                         + " light-border-color" 
                     }
-                    onClick={() => setLoginForm(false)}
+                    onClick={() => switchLoginRegister(false)}
                 >
                     REGISTER
                 </button>
@@ -105,18 +118,37 @@ function LoginBox() {
             <div className={styles.formContainer}>
                 {loginForm ? loginFormComponent : registerFormComponent}
             </div>
+            <div className={styles.errorContainer}>
+                <span className={
+                    styles.errorText
+                    + " dark-text-color"
+                }>
+                    {
+                        error ? "Ooops, looks like something went wrong, please try again": ""
+                    }
+                </span>
+            </div>
             <div className={styles.submitButtonContainer}>
-                <button className={
-                    styles.submitButton
-                    + " light-text-color"
-                    + " dark-background-hover"
-                    }
-                    onClick={
-                        loginForm ? handleLoginSubmit(handleSubmit): handleRegisterSubmit(handleSubmit)
-                    }
-                >
-                    SUBMIT
-                </button>
+                {
+                    !loading &&
+                    <button className={
+                        styles.submitButton
+                        + " light-text-color"
+                        + " dark-background-hover"
+                        }
+                        onClick={
+                            loginForm ? handleLoginSubmit(handleSubmit): handleRegisterSubmit(handleSubmit)
+                        }
+                    >
+                        SUBMIT
+                    </button>
+                }
+                {
+                    loading &&
+                    <span className='dark-text-color'>
+                        loading...
+                    </span>
+                }
             </div>
         </div>
     );
