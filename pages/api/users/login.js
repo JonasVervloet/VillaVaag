@@ -1,7 +1,8 @@
 import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken'
+import {serialize} from 'cookie'
 
 import {loginValidation} from '../../../server_utils/validation/auth_validation'
+import {createAccessToken, createRefreshToken} from '../../../server_utils/autentication/tokens'
 import User from '../../../models/User';
 
 async function handle_post_request(req, res) {
@@ -24,11 +25,11 @@ async function handle_post_request(req, res) {
         return res.status(400).send('Invalid email or password2!');
     }
 
-    const token = jwt.sign({
-        _id: user._id
-    }, process.env.ACCESS_TOKEN_SECRET);
-
+    const token = createAccessToken(user);
+    console.log(createRefreshToken(user));
+    res.setHeader('Set-Cookie', serialize('vv-token', createRefreshToken(user)));
     res.setHeader('aut-token', token);
+
     return res.send(token);
 }
 
