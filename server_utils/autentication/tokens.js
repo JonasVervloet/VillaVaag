@@ -17,3 +17,14 @@ export const createRefreshToken = (user) => {
         expiresIn: "7d"
     });
 }
+
+export const verifyAccessToken = (token) => {
+    try {
+        const payload = jwt.verify(
+            token, process.env.ACCESS_TOKEN_SECRET
+        );
+        return [true, payload];
+    } catch {
+        return [false, null];
+    }
+}

@@ -26,7 +26,6 @@ async function handle_post_request(req, res) {
     }
 
     const token = createAccessToken(user);
-    console.log(createRefreshToken(user));
     res.setHeader('Set-Cookie', serialize('vv-token', createRefreshToken(user)));
     res.setHeader('aut-token', token);
 
