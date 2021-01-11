@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt'
 
-import {registerValidation} from '../../../validation/auth_validation'
+import {registerValidation} from '../../../server_utils/validation/auth_validation'
 import User from '../../../models/User';
 
 async function handle_post_request(req, res) {

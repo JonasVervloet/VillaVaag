@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import dbConnection from '../utils/mongodb'
+import dbConnection from '../server_utils/mongodb'
 
 
 const userSchema = new mongoose.Schema({

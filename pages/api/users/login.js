@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
-import {loginValidation} from '../../../validation/auth_validation'
+import {loginValidation} from '../../../server_utils/validation/auth_validation'
 import User from '../../../models/User';
 
 async function handle_post_request(req, res) {
@@ -26,7 +26,7 @@ async function handle_post_request(req, res) {
 
     const token = jwt.sign({
         _id: user._id
-    }, process.env.TOKEN_SECRET);
+    }, process.env.ACCESS_TOKEN_SECRET);
 
     res.setHeader('aut-token', token);
     return res.send(token);
