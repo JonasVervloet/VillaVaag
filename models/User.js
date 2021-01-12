@@ -31,6 +31,10 @@ const userSchema = new mongoose.Schema({
     lastModified: {
         type: Date,
         default: Date.now
+    },
+    tokenCount: {
+        type: Number,
+        default: 0
     }
 });
 

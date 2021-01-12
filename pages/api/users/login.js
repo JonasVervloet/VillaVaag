@@ -14,6 +14,7 @@ async function handle_post_request(req, res) {
     const user = await User.findOne({
         email: req.body.email
     });
+    
     if (!user) {
         return res.status(400).send('Invalid email or password1!');
     }
@@ -25,11 +26,20 @@ async function handle_post_request(req, res) {
         return res.status(400).send('Invalid email or password2!');
     }
 
-    const token = createAccessToken(user);
-    res.setHeader('Set-Cookie', serialize('vv-token', createRefreshToken(user)));
-    res.setHeader('aut-token', token);
+    res.setHeader(
+        'Set-Cookie', 
+        serialize('vv-token', createRefreshToken(user), {
+            path: '/api'
+        })
+    );
 
-    return res.send(token);
+    const accessToken = createAccessToken(user);
+    res.setHeader('auth-token', accessToken);
+
+    return res.json({
+        success: true,
+        access_token: accessToken
+    });
 }
 
 export default async (req, res) => {

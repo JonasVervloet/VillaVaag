@@ -11,7 +11,8 @@ export const createAccessToken = (user) => {
 
 export const createRefreshToken = (user) => {
     return jwt.sign({
-        userId: user.id
+        userId: user.id,
+        tokenCount: user.tokenCount
     }, process.env.REFRESH_TOKEN_SECRET,
     {
         expiresIn: "7d"
@@ -22,6 +23,17 @@ export const verifyAccessToken = (token) => {
     try {
         const payload = jwt.verify(
             token, process.env.ACCESS_TOKEN_SECRET
+        );
+        return [true, payload];
+    } catch {
+        return [false, null];
+    }
+}
+
+export const verifyRefreshToken = (token) => {
+    try {
+        const payload = jwt.verify(
+            token, process.env.REFRESH_TOKEN_SECRET
         );
         return [true, payload];
     } catch {
