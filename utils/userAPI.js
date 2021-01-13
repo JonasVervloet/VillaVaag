@@ -1,14 +1,14 @@
-import api from './api'
+import {api} from './api'
 
 const registerUser = async (registerInfo) => {
     try {
-        const registerRes = await api.post(
+        const registerResponse = await api.post(
             'users/register',
             registerInfo
         );
         return {
             success: true,
-            data: registerRes
+            data: registerResponse.headers['auth-token']
         };
     } catch (e) {
         return {
@@ -20,13 +20,13 @@ const registerUser = async (registerInfo) => {
 
 const loginUser = async (loginInfo) => {
     try {
-        const loginRes = await api.post(
+        const loginResponse = await api.post(
             'users/login',
             loginInfo
         );
         return {
             success: true,
-            data: loginRes
+            data: loginResponse.headers['auth-token']
         }
     } catch (e) {
         return {

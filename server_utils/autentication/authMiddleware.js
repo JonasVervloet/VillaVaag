@@ -2,8 +2,8 @@ import { verifyAccessToken } from "./tokens";
 
 const withAuthentication = handler => {
     return async (req, res) => {
-
-        const authentication = req.headers['authentication'];
+        
+        const authentication = req.headers['auth-token'];
 
         if (! authentication) {
             return res.status(401).send('Please authenticate to receive the requested response!');

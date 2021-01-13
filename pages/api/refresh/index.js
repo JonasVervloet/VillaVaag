@@ -1,4 +1,3 @@
-import { TokenExpiredError } from "jsonwebtoken";
 import User from "../../../models/User";
 import { createAccessToken, verifyRefreshToken } from "../../../server_utils/autentication/tokens";
 

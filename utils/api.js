@@ -1,7 +1,15 @@
 import axios from 'axios'
 
-const api = axios.create({
+export const api = axios.create({
     baseURL: '/api/'
 });
 
-export default api;
+export const apiWithAuthentication = (accessToken) => {
+    console.log(accessToken);
+    return axios.create({
+        baseURL: '/api/',
+        headers: {
+            'auth-token': accessToken
+        }
+    })
+}

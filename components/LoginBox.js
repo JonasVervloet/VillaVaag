@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import LoginForm from './LoginForm'
 import RegisterForm from './RegisterForm'
 import styles from './LoginBox.module.css'
-import {switchLogin} from '../actions'
+import {switchLogin, setAccessToken} from '../actions'
 import {registerUser, loginUser} from '../utils/userAPI'
 import useFormList from '../utils/useFormList'
 
@@ -56,6 +56,7 @@ function LoginBox() {
             });
             setLoading(false);
             if (response.success) {
+                dispatch(setAccessToken(response.data));
                 dispatch(switchLogin());
             } else {
                 console.log('LOGIN: FAIL');
@@ -71,6 +72,7 @@ function LoginBox() {
             });
             setLoading(false);
             if (response.success) {
+                dispatch(setAccessToken(response.data));
                 dispatch(switchLogin());
             } else {
                 console.log('REGISTER: FAIL');
