@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
+import { invalidateAccessToken } from '../../actions';
 
 import Layout from '../../components/Layout'
 import { testGroupsRoute } from '../../utils/groupsAPI';
@@ -9,12 +10,13 @@ function GroupsPage() {
     const accessToken = useSelector(state => state.accessToken);
     const [data, setData] = useState(null);
 
+    const dispatch = useDispatch();
+
     useEffect(() => {
         if (! accessToken) {
             setData(null);
+
         } else {
-            console.log("Access token working!");
-            console.log(accessToken);
             getData(accessToken);
         }
     }, [accessToken]);
@@ -24,6 +26,10 @@ function GroupsPage() {
         if (response.success) {
             setData(response.data);
         }
+    }
+
+    const handleClick = () => {
+        dispatch(invalidateAccessToken());
     }
 
     return (
@@ -37,6 +43,9 @@ function GroupsPage() {
             <div>
                 {data? data : "LOADING...."}
             </div>
+            <button onClick={handleClick}>
+                click to revoke access token
+            </button>
         </Layout>
     )
 }

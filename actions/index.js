@@ -12,3 +12,9 @@ export const setAccessToken = (accessToken) => {
         }
     }
 }
+
+export const invalidateAccessToken = () => {
+    return {
+        type: 'INVALIDATE_ACCESS_TOKEN'
+    }
+}

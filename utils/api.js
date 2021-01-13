@@ -5,7 +5,6 @@ export const api = axios.create({
 });
 
 export const apiWithAuthentication = (accessToken) => {
-    console.log(accessToken);
     return axios.create({
         baseURL: '/api/',
         headers: {
