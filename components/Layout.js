@@ -7,7 +7,7 @@ import Footer from './Footer';
 import LoginBox from './LoginBox';
 import navButtons from '../config/navButtons';
 import { refreshAccessToken } from '../utils/refreshAPI';
-import { setAccessToken, switchLogin } from '../actions';
+import { setAccessToken, switchLogin, loginUser, logoutUser } from '../actions';
 
 function Layout(props) {
 
@@ -29,9 +29,10 @@ function Layout(props) {
     const refresh = async () => {
         const response = await refreshAccessToken();
         if (response.success) {
+            dispatch(loginUser())
             dispatch(setAccessToken(response.data));
         } else {
-            dispatch(switchLogin());
+            dispatch(logoutUser());
         }
     }
 

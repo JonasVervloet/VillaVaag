@@ -4,6 +4,18 @@ export const switchLogin = () => {
     }
 }
 
+export const loginUser = () => {
+    return {
+        type: 'LOG_IN_USER'
+    }
+}
+
+export const logoutUser = () => {
+    return {
+        type: 'LOG_OUT_USER'
+    }
+}
+
 export const setAccessToken = (accessToken) => {
     return {
         type: 'SET_ACCESS_TOKEN',
