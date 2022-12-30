@@ -22,13 +22,12 @@ function FormInput({title, type, register, errors}) {
                 </span>
                 <input 
                     type={type}
-                    name={title}
                     className={
                         styles.inputSpace
                         + " dark-text-color"
                         + " dark-border-color"
                     }
-                    ref={register}
+                    {...register}
                 >
                 </input>
                 <p

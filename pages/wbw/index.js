@@ -20,14 +20,11 @@ export default function WBWHome() {
             }>
                 WBW
             </h1>
-            <Link href="wbw/groups">
-                <a className={
+            <Link href="wbw/groups" className={
                     styles.loginText
                     + " dark-text-color"
-                    + " dark-text-hover"
-                }>
+                    + " dark-text-hover"}>
                     click here to login-in
-                </a>
             </Link>
         </div>
     )
